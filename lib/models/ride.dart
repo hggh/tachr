@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+import 'package:intl/intl.dart';
 import 'package:duration/duration.dart';
 
 import 'package:tachr/database.dart';
@@ -54,13 +55,24 @@ class Ride {
 
   String getHumanRideTime() {
     final d = DateTime.fromMillisecondsSinceEpoch(this.rideTime);
-    return d.toString();
+    var f = new DateFormat('dd.MM.y HH:mm');
+    return f.format(d);
+  }
+
+  String getAverageSpeed() {
+    double h = (this.rideTimeSeconds / 60.0) / 60.0;
+    double a = this.getKilometers() / h;
+
+    return a.toStringAsFixed(2) + 'km/h';
+  }
+
+  double getKilometers() {
+    double k = this.kilometers / 100;
+    return k;
   }
 
   String getHumanKilometers() {
-    double k = this.kilometers / 100;
-
-    return k.toString() + ' km';
+    return this.getKilometers().toString() + ' km';
   }
 
   String getHumanMaxSpeed() {

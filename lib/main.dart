@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tachr/ride_add.dart';
-import 'package:tachr/ride.dart';
+import 'package:tachr/models/ride.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,7 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ' at ' + 
                         snapshot.data[index].getHumanRideTime() +
                         ' K: ' +
-                        snapshot.data[index].getHumanKilometers()
+                        snapshot.data[index].getHumanKilometers() +
+                        ' D:' +
+                        snapshot.data[index].getAverageSpeed()
                         ),
                     );
                   },
